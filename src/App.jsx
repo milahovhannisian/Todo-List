@@ -3,76 +3,96 @@ import "./App.css";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState("");
-  const [editId, setEditId] = useState(null);
-  const [editText, setEditText] = useState("");
+  const [newTask, setNewTask] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState("");
 
-  const handleAdd = (e) => {
+  const addTask = (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
-    setTasks([...tasks, { id: Date.now(), text: input, done: false }]);
-    setInput("");
+    const trimmed = newTask.trim();
+    if (!trimmed) return;
+
+    const task = {
+      id: Date.now(),
+      text: trimmed,
+      done: false,
+    };
+
+    setTasks([...tasks, task]);
+    setNewTask("");
   };
 
-  const handleToggle = (id) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, done: !task.done } : task
+  const toggleTask = (id) => {
+    setTasks(tasks.map((t) =>
+      t.id === id ? { ...t, done: !t.done } : t
     ));
   };
 
-  const handleDelete = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id));
   };
 
-  const startEditing = (task) => {
-    setEditId(task.id);
-    setEditText(task.text);
+  const beginEdit = (task) => {
+    setEditingId(task.id);
+    setEditingText(task.text);
   };
 
-  const saveEdit = (id) => {
-    if (!editText.trim()) return;
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, text: editText } : task
+  const applyEdit = (id) => {
+    const trimmed = editingText.trim();
+    if (!trimmed) return;
+
+    setTasks(tasks.map((t) =>
+      t.id === id ? { ...t, text: trimmed } : t
     ));
-    setEditId(null);
-    setEditText("");
+
+    setEditingId(null);
+    setEditingText("");
   };
 
   return (
     <div className="todo-container">
-      <h1 className="title">To-Do List</h1>
+      <h1 className="title">My To-Do List</h1>
 
-      <form onSubmit={handleAdd} className="form">
+      <form onSubmit={addTask} className="form">
         <input
           className="input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Add a task..."
+          placeholder="What do you need to do?"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
         />
-        <button type="submit" className="btn">Add Task</button>
+        <button type="submit" className="btn">Add</button>
       </form>
 
       <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id} className={`task ${task.done ? "done" : ""}`}>
-            {editId === task.id ? (
+            {editingId === task.id ? (
               <input
                 className="edit-input"
-                type="text"
-                value={editText}
-                onChange={(e) => setEditText(e.target.value)}
-                onBlur={() => saveEdit(task.id)}
+                value={editingText}
+                onChange={(e) => setEditingText(e.target.value)}
+                onBlur={() => applyEdit(task.id)}
               />
             ) : (
-              <span onClick={() => startEditing(task)} className="task-text">
+              <span
+                className="task-text"
+                onClick={() => beginEdit(task)}
+              >
                 {task.text}
               </span>
             )}
+
             <div className="btn-group">
-              <button onClick={() => handleToggle(task.id)} className="btn small">
-                {task.done ? "Undone" : "Done"}
+              <button
+                className="btn small"
+                onClick={() => toggleTask(task.id)}
+              >
+                {task.done ? "Undo" : "Done"}
               </button>
-              <button onClick={() => handleDelete(task.id)} className="btn small delete">
+              <button
+                className="btn small delete"
+                onClick={() => deleteTask(task.id)}
+              >
                 Delete
               </button>
             </div>
@@ -84,5 +104,3 @@ function App() {
 }
 
 export default App;
-
-

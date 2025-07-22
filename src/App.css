@@ -1,22 +1,24 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f0f8ff;
+  background-color: #f0f6ff;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  color: #333;
 }
 
 .todo-container {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1);
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 50, 0.1);
 }
 
 .title {
   text-align: center;
-  color: #004080;
+  color: #1e4ed8;
+  margin-bottom: 20px;
 }
 
 .form {
@@ -28,34 +30,45 @@ body {
 .input {
   flex: 1;
   padding: 10px;
-  border: 2px solid #0074d9;
-  border-radius: 5px;
+  font-size: 16px;
+  border: 2px solid #d0dff7;
+  border-radius: 6px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #1e40af;
 }
 
 .btn {
-  padding: 10px 16px;
-  background-color: #0074d9;
+  background-color: #1e40af;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #005fa3;
+  background-color: #1d4ed8;
 }
 
 .task-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .task {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+  background-color: #eef4ff;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .task-text {
@@ -63,9 +76,18 @@ body {
   font-size: 16px;
 }
 
-.done .task-text {
+.task.done .task-text {
   text-decoration: line-through;
-  color: #888;
+  color: #6b7280;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
 }
 
 .btn-group {
@@ -73,23 +95,15 @@ body {
   gap: 8px;
 }
 
-.btn.small {
+.small {
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .delete {
-  background-color: #ff4136;
+  background-color: #dc2626;
 }
 
 .delete:hover {
-  background-color: #c0392b;
-}
-
-.edit-input {
-  padding: 6px;
-  font-size: 16px;
-  width: 100%;
-  border: 1px solid #0074d9;
-  border-radius: 4px;
+  background-color: #b91c1c;
 }
