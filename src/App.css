@@ -1,0 +1,95 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f8ff;
+  margin: 0;
+  padding: 20px;
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #004080;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #0074d9;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 10px 16px;
+  background-color: #0074d9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #005fa3;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.task-text {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.done .task-text {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.delete {
+  background-color: #ff4136;
+}
+
+.delete:hover {
+  background-color: #c0392b;
+}
+
+.edit-input {
+  padding: 6px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid #0074d9;
+  border-radius: 4px;
+}
